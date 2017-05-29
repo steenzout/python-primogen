@@ -11,13 +11,13 @@ exec(open('steenzout/primogen/metadata.py').read())
 
 
 def requirements(requirements_file):
-    """Return primogen mentioned in the given file.
+    """Return packages mentioned in the given file.
 
     Args:
         requirements_file (str): path to the requirements file to be parsed.
 
     Returns:
-        (list): 3rd-party primogen dependencies contained in the file.
+        (list): 3rd-party package dependencies contained in the file.
     """
     return [
         str(pkg.req) for pkg in parse_requirements(
