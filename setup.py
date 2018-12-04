@@ -1,11 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import pip.download
-
-from pip.req import parse_requirements
+import pip
 
 from setuptools import find_packages, setup
+
+if int(pip.__version__.split('.')[0]) >= 10:
+    from pip._internal import download as pip_download
+    from pip._internal.req import parse_requirements
+
+else:
+    from pip import download as pip_download
+    from pip.req import parse_requirements
 
 exec(open('steenzout/primogen/metadata.py').read())
 
@@ -21,7 +27,7 @@ def requirements(requirements_file):
     """
     return [
         str(pkg.req) for pkg in parse_requirements(
-            requirements_file, session=pip.download.PipSession()) if pkg.req is not None]
+            requirements_file, session=pip_download.PipSession()) if pkg.req is not None]
 
 
 setup(name=__package__,
