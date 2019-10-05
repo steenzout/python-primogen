@@ -7,10 +7,12 @@ cache:
   - "${HOME}/.pip"
 before_cache:
 - find ${HOME}/.pip -name log -o -name __pycache__ -type d | xargs -I {} rm -rf {}
+python:
+- 3.7
+- 3.6
+- 3.5
 matrix:
   fast_finish: true
-  allow_failures:
-  - python: 3.6
 install:
 - pip install tox
 - pip install tox-travis
