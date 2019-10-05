@@ -24,9 +24,9 @@ after_success:
 - coveralls
 deploy:
   provider: pypi
-  user: steenzout
+  user: '__token__'
   password:
-    secure: 'execute "travis encrypt ${TRAVIS_PASSWORD} --add deploy.password"'
+    secure: 'execute "travis encrypt ${PYPI_API_TOKEN} --add deploy.password"'
   on:
     tags: true
 notifications:
